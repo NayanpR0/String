@@ -62,7 +62,7 @@ async def fcast(_, m : Message):
             elif errors.InputUserDeactivated:
                 deleted += 1
                 remove_user(userid)
-            elif Exception as e:
+            elif errors.PeerIdInvalid:
                 failed += 1
         done += 1
         await asyncio.sleep(2)
