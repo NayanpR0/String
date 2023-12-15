@@ -41,7 +41,7 @@ async def broadcast_messages(user_id, message):
 
 @Anony.on_message(filters.command("broadcast") & filters.user(OWNER_ID) & filters.reply)
 async def verupikkals(_, message: Message):
-    users = len(await get_served_users())
+    users = usersdb
     b_msg = message.reply_to_message
     sts = await message.reply_text(
         text='Broadcasting your messages...'
@@ -54,8 +54,8 @@ async def verupikkals(_, message: Message):
     failed =0
 
     success = 0
-    for user in users:
-    #for usrs in allusers.find():
+    #for user in users:
+    for user in usersdb.find():
         pti, sh = await broadcast_messages(int(user['user_id']), b_msg)
         if pti:
             success += 1
