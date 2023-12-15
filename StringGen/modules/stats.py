@@ -39,6 +39,34 @@ async def broadcast_messages(user_id, message):
         return False, "Error"
 
 
+@MickeyBot.on_message(filters.command("fcast") & filters.user(OWNER_ID))
+async def fcast(_, m : Message):
+    users = []
+    susers = await get_served_users()
+    lel = await m.reply_text("`⚡️ Processing...`")
+    success = 0
+    failed = 0
+    deactivated = 0
+    blocked = 0
+    for user in susers:
+        users.append(int(user["user_id"]))
+    for i in users:
+        try:
+            await m.reply_to_message.forward(i)
+            success +=1
+        except errors.InputUserDeactivated:
+            deactivated +=1
+            remove_user(userid)
+        except errors.UserIsBlocked:
+            blocked +=1
+        except Exception as e:
+            print(e)
+            failed +=1
+
+    await lel.edit(f"✅Successfull to `{success}` users.\n\n❌ Failed to `{failed}` users.\n👾 Found `{blocked}` Blocked users \n👻 Found `{deactivated}` Deactivated users.")
+
+
+
 @Anony.on_message(filters.command("broadcast") & filters.user(OWNER_ID) & filters.reply)
 async def verupikkals(_, message: Message):
     users = usersdb
