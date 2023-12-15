@@ -43,7 +43,7 @@ async def broadcast_messages(user_id, message):
 async def fcast(_, m : Message):
     users = []
     susers = await get_served_users()
-    lel = await m.reply_text("`⚡️ Processing...`")
+    lel = await m.reply_text(text="`⚡️ Processing...`")
     success = 0
     failed = 0
     deactivated = 0
@@ -65,7 +65,7 @@ async def fcast(_, m : Message):
             elif errors.PeerIdInvalid:
                 failed += 1
         done += 1
-        await asyncio.sleep(2)
+        #await asyncio.sleep(2)
         if not done % 20:
             await lel.edit(f"Broadcast in progress:\n\nTotal Users {total_users}\nCompleted: {done} / {total_users}\nSuccess: {success}\nBlocked: {blocked}\nFailed: {failed}")    
     time_taken = datetime.timedelta(seconds=int(time.time()-start_time))
