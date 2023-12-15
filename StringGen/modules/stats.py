@@ -48,22 +48,33 @@ async def fcast(_, m : Message):
     failed = 0
     deactivated = 0
     blocked = 0
+    total_users = len(await get_served_users())
+    start_time = time.time()
     for user in susers:
         users.append(int(user["user_id"]))
     for i in users:
-        try:
-            await m.reply_to_message.forward(i)
-            success +=1
-        except errors.InputUserDeactivated:
-            deactivated +=1
-            remove_user(userid)
-        except errors.UserIsBlocked:
-            blocked +=1
-        except Exception as e:
-            print(e)
-            failed +=1
-
-    await lel.edit(f"✅Successfull to `{success}` users.\n\n❌ Failed to `{failed}` users.\n👾 Found `{blocked}` Blocked users \n👻 Found `{deactivated}` Deactivated users.")
+        pti, sh = await m.reply_to_message.forward(i)
+        if pti:
+            success += 1
+        elif pti == False:
+            if errors.UserIsBlocked:
+                blocked+=1
+            elif errors.InputUserDeactivated:
+                deleted += 1
+                remove_user(userid)
+            elif Exception as e:
+                failed += 1
+        done += 1
+        await asyncio.sleep(2)
+        if not done % 20:
+            await lel.edit(f"Broadcast in progress:\n\nTotal Users {total_users}\nCompleted: {done} / {total_users}\nSuccess: {success}\nBlocked: {blocked}\nFailed: {failed}")    
+    time_taken = datetime.timedelta(seconds=int(time.time()-start_time))
+    await lel.edit(f"Broadcast Completed:\nCompleted in {time_taken} seconds.\n\nTotal Users {total_users}\nCompleted: {done} / {total_users}\nSuccess: {success}\nBlocked: {blocked}\nFailed: {failed}")    
+    
+    
+    
+    
+    #await lel.edit(f"✅Successfull to `{success}` users.\n\n❌ Failed to `{failed}` users.\n👾 Found `{blocked}` Blocked users \n👻 Found `{deactivated}` Deactivated users.")
 
 
 
@@ -97,6 +108,6 @@ async def verupikkals(_, message: Message):
         done += 1
         await asyncio.sleep(2)
         if not done % 20:
-            await sts.edit(f"Broadcast in progress:\n\nTotal Users {total_users}\nCompleted: {done} / {total_users}\nSuccess: {success}\nBlocked: {blocked}\nDeleted: {deleted}")    
+            await sts.edit(f"Broadcast in progress:\n\nTotal Users {total_users}\nCompleted: {done} / {total_users}\nSuccess: {success}\nBlocked: {blocked}\nFailed: {failed}")    
     time_taken = datetime.timedelta(seconds=int(time.time()-start_time))
-    await sts.edit(f"Broadcast Completed:\nCompleted in {time_taken} seconds.\n\nTotal Users {total_users}\nCompleted: {done} / {total_users}\nSuccess: {success}\nBlocked: {blocked}\nDeleted: {deleted}")    
+    await sts.edit(f"Broadcast Completed:\nCompleted in {time_taken} seconds.\n\nTotal Users {total_users}\nCompleted: {done} / {total_users}\nSuccess: {success}\nBlocked: {blocked}\nFailed: {failed")    
