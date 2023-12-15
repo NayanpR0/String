@@ -39,7 +39,7 @@ async def broadcast_messages(user_id, message):
         return False, "Error"
 
 
-@MickeyBot.on_message(filters.command("fcast") & filters.user(OWNER_ID))
+@Anony.on_message(filters.command("fcast") & filters.user(OWNER_ID))
 async def fcast(_, m : Message):
     users = []
     susers = await get_served_users()
