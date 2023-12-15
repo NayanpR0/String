@@ -54,7 +54,8 @@ async def verupikkals(_, message: Message):
     failed =0
 
     success = 0
-    async for user in users:
+    for user in users:
+    #for usrs in allusers.find():
         pti, sh = await broadcast_messages(int(user['user_id']), b_msg)
         if pti:
             success += 1
