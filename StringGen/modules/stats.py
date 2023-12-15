@@ -18,16 +18,15 @@ async def get_stats(_, message: Message):
 
 @Anony.on_message(filters.command("fcast") & filters.user(OWNER_ID))
 async def fcast(_, m : Message):
-    users = []
-    susers = await get_served_users()
+    
     lel = await m.reply_text(text="`⚡️ Processing...`")
     success = 0
     failed = 0
     deactivated = 0
     blocked = 0
     total_users = len(await get_served_users())
-    start_time = time.time()
-    for usrs in susers:
+    
+    for usrs in usersdb:
         try:
             userid = usrs["user_id"]
             print(int(userid))
@@ -44,14 +43,5 @@ async def fcast(_, m : Message):
             print(e)
             failed +=1
             
-        #await asyncio.sleep(2)
-        if not success % 20:
-            await lel.edit(f"Broadcast in progress:\n\nTotal Users {total_users}\nCompleted: {success} / {total_users}\nSuccess: {success}\nBlocked: {blocked}\nFailed: {failed}")    
-    time_taken = datetime.timedelta(seconds=int(time.time()-start_time))
-    await lel.edit(f"Broadcast Completed:\nCompleted in {time_taken} seconds.\n\nTotal Users {total_users}\nCompleted: {done} / {total_users}\nSuccess: {success}\nBlocked: {blocked}\nFailed: {failed}")    
-    
-    
-    
-    
-    #await lel.edit(f"✅Successfull to `{success}` users.\n\n❌ Failed to `{failed}` users.\n👾 Found `{blocked}` Blocked users \n👻 Found `{deactivated}` Deactivated users.")
+    await lel.edit(f"✅Successfull to `{success}` users.\n\n❌ Failed to `{failed}` users.\n👾 Found `{blocked}` Blocked users \n👻 Found `{deactivated}` Deactivated users.")
 
