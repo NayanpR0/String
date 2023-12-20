@@ -17,7 +17,7 @@ async def get_stats(_, message: Message):
 
 
 @Anony.on_message(filters.command(["broadcast", "stat"]) & filters.user(OWNER_ID))
-async def broadcast(_, message: Message):
+async def broadcast(_, m: Message):
     if m.text == "/stat":
         total_users = await usersdb.count_documents({})
         return await m.reply(f"Total Users: {total_users}")
