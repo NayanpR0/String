@@ -30,7 +30,7 @@ async def broadcast(_, m: Message):
     success = 0
     start_time = time.time()
     async for user in users:
-        user_id = int(user['id'])
+        user_id = int(user['user_id'])
         try:
             await b_msg.copy(chat_id=user_id)
             success += 1
