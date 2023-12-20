@@ -12,7 +12,7 @@ from StringGen.utils import get_served_users, usersdb
 @Anony.on_message(filters.command(["stats", "users"]) & filters.user(OWNER_ID))
 async def get_stats(_, message: Message):
     users = len(await get_served_users())
-    await message.reply_text(f"» ᴄᴜʀʀᴇɴᴛ sᴛᴀᴛs ᴏғ {Anony.name} :\n\n {users} ᴜsᴇʀs")
+    await message.reply_text(f"» ᴄᴜʀʀᴇɴᴛ sᴛᴀᴛs ᴏғ {Anony.mention} :\n\n {users} ᴜsᴇʀs")
 
 
 
@@ -20,13 +20,14 @@ async def get_stats(_, message: Message):
 async def broadcast(_, m: Message):
     if m.text == "/stat":
         total_users = await usersdb.count_documents({})
-        return await m.reply(f"Total Users: {total_users}")
+        return await m.reply(f"ᴛᴏᴛᴀʟ ᴜsᴇʀs: {total_users}")
     b_msg = m.reply_to_message
-    sts = await m.reply_text("Broadcasting your messages...")
+    sts = await m.reply_text("ʙʀᴏᴀᴅᴄᴀꜱᴛɪɴɢ...")
     users = usersdb.find({})
     total_users = await usersdb.count_documents({})
     done = 0
     failed = 0
+    blocked = 0
     success = 0
     start_time = time.time()
     async for user in users:
@@ -42,7 +43,7 @@ async def broadcast(_, m: Message):
             await usersdb.delete_many({'id': user_id})
             failed += 1
         except UserIsBlocked:
-            failed += 1
+            blocked += 1
         except PeerIdInvalid:
             await usersdb.delete_many({'id': user_id})
             failed += 1
@@ -50,7 +51,7 @@ async def broadcast(_, m: Message):
             failed += 1
         done += 1
         if not done % 20:
-            await sts.edit(f"Broadcast in progress:\n\nTotal Users {total_users}\nCompleted: {done} / {total_users}\nSuccess: {success}\nFailed: {failed}")    
+            await sts.edit(f"ʙʀᴏᴀᴅᴄᴀsᴛ ɪɴ ᴘʀᴏɢʀᴇss:\n\nᴛᴏᴛᴀʟ ᴜsᴇʀs {total_users}\nᴄᴏᴍᴘʟᴇᴛᴇᴅ: {done} / {total_users}\nsᴜᴄᴄᴇss: {success}\nʙʟᴏᴄᴋᴇᴅ: {blocked}\nғᴀɪʟᴇᴅ: {failed}\n\nʙᴏᴛ - {Anony.mention}")    
     time_taken = datetime.timedelta(seconds=int(time.time()-start_time))
     await sts.delete()
-    await m.reply_text(f"Broadcast Completed:\nCompleted in {time_taken} seconds.\n\nTotal Users {total_users}\nCompleted: {done} / {total_users}\nSuccess: {success}\nFailed: {failed}", quote=True)
+    await m.reply_text(f"ʙʀᴏᴀᴅᴄᴀsᴛ ᴄᴏᴍᴘʟᴇᴛᴇᴅ:\nᴄᴏᴍᴘʟᴇᴛᴇᴅ ɪɴ {time_taken} sᴇᴄᴏɴᴅs.\n\nᴛᴏᴛᴀʟ ᴜsᴇʀs {total_users}\nᴄᴏᴍᴘʟᴇᴛᴇᴅ: {done} / {total_users}\nsᴜᴄᴄᴇss: {success}\nʙʟᴏᴄᴋᴇᴅ: {blocked}\nғᴀɪʟᴇᴅ: {failed}\n\nʙᴏᴛ - {Anony.mention}", quote=True)
