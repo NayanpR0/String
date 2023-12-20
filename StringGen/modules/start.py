@@ -8,7 +8,7 @@ from config import SESSION_STRING, API_ID, API_HASH
 REQUEST_CHANNEL_ID = "-1001818783065"
 
 userbot = Client(name="userbot", api_hash=API_HASH, api_id=API_ID, session_string=SESSION_STRING)
-await userbot.start()
+userbot.start()
 
 @Anony.on_message(filters.command("start") & filters.private & filters.incoming)
 async def f_start(_, message: Message):
