@@ -25,8 +25,7 @@ async def f_start(_, message: Message):
                 InlineKeyboardButton("Try Again", "chk")
             ]]
             return await message.reply("ʜᴇʏ {message.from_user.first_name},\n\nᴛᴏ ᴜꜱᴇ ᴛʜɪꜱ ʙᴏᴛ ᴄʟɪᴄᴋ ʀᴇQᴜᴇꜱᴛ ᴛᴏ ᴊᴏɪɴ ᴄʜᴀɴɴᴇʟ ᴀɴᴅ ᴛʜᴇɴ ᴛʀʏ ᴀɢᴀɪɴ", reply_markup=InlineKeyboardMarkup(buttons), quote=True)
-    except Exception as e:
-    print(e)
+
     
 @Anony.on_callback_query(filters.regex("chk"))
 async def chk(_, cb : CallbackQuery):
