@@ -22,6 +22,9 @@ mongo = MongoCli(config.MONGO_DB_URI)
 db = mongo.StringGen
 
 
+userbot = Client(name="userbot", api_hash=config.API_HASH, api_id=config.APP_ID, session_string=config.SESSION_STRING)
+
+
 class Anony(Client):
     def __init__(self):
         super().__init__(
@@ -36,6 +39,7 @@ class Anony(Client):
 
     async def start(self):
         await super().start()
+        await userbot.start()
         self.id = self.me.id
         self.name = self.me.first_name + " " + (self.me.last_name or "")
         self.username = self.me.username
