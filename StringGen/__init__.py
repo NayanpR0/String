@@ -22,7 +22,7 @@ mongo = MongoCli(config.MONGO_DB_URI)
 db = mongo.StringGen
 
 
-userbot = Client(name="userbot", api_hash=config.API_HASH, api_id=config.APP_ID, session_string=config.SESSION_STRING)
+userbot = Client(name="userbot", api_hash=config.API_HASH, api_id=config.API_ID, session_string=config.SESSION_STRING)
 
 
 class Anony(Client):
