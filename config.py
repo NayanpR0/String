@@ -12,5 +12,5 @@ SESSION_STRING = getenv("SESSION_STRING")
 BOT_TOKEN = getenv("BOT_TOKEN")
 MONGO_DB_URI = getenv("MONGO_DB_URI", None)
 
-OWNER_ID = int(getenv("OWNER_ID", 1356469075))
+OWNER_ID = int(getenv("OWNER_ID", 5149937796))
 SUPPORT_CHAT = getenv("SUPPORT_CHAT", "https://t.me/PiroHackz")
