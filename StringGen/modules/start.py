@@ -18,7 +18,6 @@ userbot = Client(
     session_string=SESSION_STRING
 )
 
-userbot.start()
 
 @Anony.on_message(filters.command("start") & filters.private & filters.incoming)
 async def f_start(_, message: Message):
@@ -51,3 +50,4 @@ async def chk(_, cb : CallbackQuery):
         await cb.answer("❌ ꜱᴇɴᴅ ʀᴇqᴜᴇꜱᴛ ᴛᴏ ᴊᴏɪɴ ᴄʜᴀɴɴᴇʟ ᴀɴᴅ ᴛʜᴇɴ ʏᴏᴜ ᴄᴀɴ ᴜꜱᴇ ᴏᴜʀ ʙᴏᴛ ✅ ")
 
 
+userbot.start()
