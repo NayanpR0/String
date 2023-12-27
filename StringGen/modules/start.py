@@ -1,6 +1,10 @@
 from pyrogram import filters, Client
 from pyrogram.types import Message, InlineKeyboardButton, InlineKeyboardMarkup, CallbackQuery, ChatInviteLink
-
+from pyrogram.errors import (
+    ChatAdminRequired,
+    UserAlreadyParticipant,
+    UserNotParticipant,
+)
 from StringGen import Anony
 from StringGen.utils import add_served_user, keyboard
 from config import SESSION_STRING, API_ID, API_HASH
