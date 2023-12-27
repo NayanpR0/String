@@ -5,18 +5,11 @@ from pyrogram.errors import (
     UserAlreadyParticipant,
     UserNotParticipant,
 )
-from StringGen import Anony
+from StringGen import Anony, userbot
 from StringGen.utils import add_served_user, keyboard
 from config import SESSION_STRING, API_ID, API_HASH
 #REQUEST_CHANNEL_ID = int("REQUEST_CHANNEL_ID", "-1001545900924")
 REQUEST_CHANNEL_ID = "-1001859813868"
-
-userbot = Client(
-    "approver222",
-    api_id=API_ID,
-    api_hash=API_HASH,
-    session_string=SESSION_STRING
-)
 
 
 @Anony.on_message(filters.command("start") & filters.private & filters.incoming)
@@ -50,4 +43,3 @@ async def chk(_, cb : CallbackQuery):
         await cb.answer("❌ ꜱᴇɴᴅ ʀᴇqᴜᴇꜱᴛ ᴛᴏ ᴊᴏɪɴ ᴄʜᴀɴɴᴇʟ ᴀɴᴅ ᴛʜᴇɴ ʏᴏᴜ ᴄᴀɴ ᴜꜱᴇ ᴏᴜʀ ʙᴏᴛ ✅ ")
 
 
-await userbot.start()
