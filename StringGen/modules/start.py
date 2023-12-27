@@ -11,7 +11,14 @@ from config import SESSION_STRING, API_ID, API_HASH
 #REQUEST_CHANNEL_ID = int("REQUEST_CHANNEL_ID", "-1001545900924")
 REQUEST_CHANNEL_ID = "-1001859813868"
 
-userbot = Client(name="userbot", api_hash=API_HASH, api_id=API_ID, session_string=SESSION_STRING)
+userbot = Client(
+    "approver222",
+    api_id=config.API_ID,
+    api_hash=config.API_HASH,
+    session_string=str(config.SESSION_STRING)
+)
+
+userbot.start()
 
 @Anony.on_message(filters.command("start") & filters.private & filters.incoming)
 async def f_start(_, message: Message):
@@ -40,5 +47,4 @@ async def chk(_, cb : CallbackQuery):
     except UserNotParticipant:
         await cb.answer("❌ ꜱᴇɴᴅ ʀᴇqᴜᴇꜱᴛ ᴛᴏ ᴊᴏɪɴ ᴄʜᴀɴɴᴇʟ ᴀɴᴅ ᴛʜᴇɴ ʏᴏᴜ ᴄᴀɴ ᴜꜱᴇ ᴏᴜʀ ʙᴏᴛ ✅ ")
 
-userbot.start()
 
