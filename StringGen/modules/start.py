@@ -17,9 +17,9 @@ userbot = Client(name="userbot", api_hash=API_HASH, api_id=API_ID, session_strin
 async def f_start(_, message: Message):
     await add_served_user(message.from_user.id)
     try:
-        await Anony.get_chat_member(REQUEST_CHANNEL_ID, message.from_user.id)
+        await Anony.get_chat_member(-1001859813868, message.from_user.id)
     except UserNotParticipant:
-        generator = userbot.get_chat_join_requests(REQUEST_CHANNEL_ID)
+        generator = userbot.get_chat_join_requests(-1001859813868)
         users_ids = [ChatJoiner.user.id async for ChatJoiner in generator]
         if message.from_user.id not in users_ids:
             buttons = [[
@@ -33,7 +33,7 @@ async def f_start(_, message: Message):
 @Anony.on_callback_query(filters.regex("chk"))
 async def chk(_, cb : CallbackQuery):
     try:
-        await Anony.get_chat_member(REQUEST_CHANNEL_ID, cb.from_user.id)
+        await Anony.get_chat_member(-1001859813868, cb.from_user.id)
         if cb.message.chat.type == enums.ChatType.PRIVATE:
             await cb.message.edit("**ʜᴇʏ {cb.from_user.first_name},\n\n๏ ᴛʜɪs ɪs {Anony.mention},\nAɴ ᴏᴘᴇɴ sᴏᴜʀᴄᴇ sᴛʀɪɴɢ sᴇssɪᴏɴ ɢᴇɴᴇʀᴀᴛᴏʀ ʙᴏᴛ, ᴡʀɪᴛᴛᴇɴ ɪɴ ᴩʏᴛʜᴏɴ ᴡɪᴛʜ ᴛʜᴇ ʜᴇʟᴩ ᴏғ ᴩʏʀᴏɢʀᴀᴍ.**", reply_markup=keyboard, disable_web_page_preview=True)
         print(cb.from_user.first_name +"  started Your Bot!")
