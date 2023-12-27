@@ -8,8 +8,8 @@ from pyrogram.errors import (
 from StringGen import Anony
 from StringGen.utils import add_served_user, keyboard
 from config import SESSION_STRING, API_ID, API_HASH
-REQUEST_CHANNEL_ID = int("REQUEST_CHANNEL_ID", "-1001545900924")
-#REQUEST_CHANNEL_ID = "-1001818783065"
+#REQUEST_CHANNEL_ID = int("REQUEST_CHANNEL_ID", "-1001545900924")
+REQUEST_CHANNEL_ID = "-1001859813868"
 
 userbot = Client(name="userbot", api_hash=API_HASH, api_id=API_ID, session_string=SESSION_STRING)
 
