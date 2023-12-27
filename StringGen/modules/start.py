@@ -26,7 +26,7 @@ async def f_start(_, message: Message):
     try:
         await Anony.get_chat_member(-1001859813868, message.from_user.id)
         if message.chat.type == enums.ChatType.PRIVATE:
-            await cb.message.edit("**ʜᴇʏ {cb.from_user.first_name},\n\n๏ ᴛʜɪs ɪs {Anony.mention},\nAɴ ᴏᴘᴇɴ sᴏᴜʀᴄᴇ sᴛʀɪɴɢ sᴇssɪᴏɴ ɢᴇɴᴇʀᴀᴛᴏʀ ʙᴏᴛ, ᴡʀɪᴛᴛᴇɴ ɪɴ ᴩʏᴛʜᴏɴ ᴡɪᴛʜ ᴛʜᴇ ʜᴇʟᴩ ᴏғ ᴩʏʀᴏɢʀᴀᴍ.**", reply_markup=keyboard, disable_web_page_preview=True)
+            await message.reply("**ʜᴇʏ {message.from_user.first_name},\n\n๏ ᴛʜɪs ɪs {Anony.mention},\nAɴ ᴏᴘᴇɴ sᴏᴜʀᴄᴇ sᴛʀɪɴɢ sᴇssɪᴏɴ ɢᴇɴᴇʀᴀᴛᴏʀ ʙᴏᴛ, ᴡʀɪᴛᴛᴇɴ ɪɴ ᴩʏᴛʜᴏɴ ᴡɪᴛʜ ᴛʜᴇ ʜᴇʟᴩ ᴏғ ᴩʏʀᴏɢʀᴀᴍ.**", reply_markup=keyboard, disable_web_page_preview=True)
         print(cb.from_user.first_name +"  started Your Bot!")
     except UserNotParticipant:
         generator = userbot.get_chat_join_requests(-1001859813868)
